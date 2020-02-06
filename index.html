@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TodoList</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper blue">
+      <a href="#" class="brand-logo">List of thinks</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="center">
+
+<div id="app-6">
+  <h4 class="center">O que estou adicionando: {{ message }}</h4>
+  <input v-model="message">
+  <button  class="waves-effect waves-light btn" v-on:click="addItem">Adicionar item</button>
+</div>
+
+<div id="app-4">
+  <h4 class="center">Adicionados</h4>
+  <ul class="collection">
+    <li class="collection-item" v-for="todo in todos">
+      {{ todo.text }} <i class="material-icons">delete</i>
+    </li>
+  </ul>
+</div>
+
+</div>
+</div>
+
+<script>
+  var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ]
+  }
+})
+
+var app6 = new Vue({
+  el: '#app-6',
+  data: {
+    message: ''
+  },
+   methods: {
+    addItem: function () {
+      if(app6.message != ''){
+        app4.todos.push({ text: app6.message })
+      }else{
+        alert('Preencha o campo')
+      }
+      
+      app6.message = ''
+    }
+  }
+})
+
+
+</script>
+</body>
+</html>
