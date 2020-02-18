@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TodoList</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper blue">
+      <a href="#" class="brand-logo">Consumindo API Rest Com Vue.js</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="center">
+
+      <div id="app">
+        {{ info }}
+      </div>
+
+</div>
+</div>
+
+<script>
+  new Vue({
+  el: '#app',
+  data () {
+    return {
+      info: null
+    }
+  },
+  mounted () {
+    axios
+      .get('https://emanuel-curriculo.herokuapp.com/api/curriculo')
+      .then(response => (this.info = response.data))
+      .catch(function (error) {
+        console.log(error)
+      }
+    )
+  }
+})
+
+
+</script>
+</body>
+</html>
